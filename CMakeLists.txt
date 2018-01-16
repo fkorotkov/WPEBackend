@@ -5,6 +5,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -D_POSIX_SOURCE")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 find_package(EGL REQUIRED)
+find_package(Vulkan REQUIRED)
 
 add_definitions(${EGL_DEFINITIONS})
 
@@ -16,6 +17,7 @@ set(WPE_INCLUDE_DIRECTORIES
     "include"
     "src"
     ${EGL_INCLUDE_DIRS}
+    ${VULKAN_INCLUDE_DIRS}
 )
 
 set(WPE_LIBRARIES
@@ -29,6 +31,7 @@ set(WPE_SOURCES
     src/pasteboard-generic.cpp
     src/pasteboard-noop.cpp
     src/renderer-backend-egl.c
+    src/renderer-backend-vulkan.c
     src/renderer-host.c
     src/view-backend.c
 )
@@ -38,6 +41,7 @@ set(WPE_PUBLIC_HEADERS
   include/wpe/loader.h
   include/wpe/pasteboard.h
   include/wpe/renderer-backend-egl.h
+  include/wpe/renderer-backend-vulkan.h
   include/wpe/renderer-host.h
   include/wpe/view-backend.h
 )
