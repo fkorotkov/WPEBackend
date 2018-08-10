@@ -1,0 +1,9 @@
+container:
+  image: aperezdc/ci-wpebackend:latest
+
+build_task:
+  build_script: |
+    mkdir _build
+    cd _build
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/usr/lib -DCMAKE_BUILD_TYPE=Release ..
+    make -j$(nproc)
